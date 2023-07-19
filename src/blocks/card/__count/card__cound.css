@@ -1,0 +1,8 @@
+.card__count{
+    position: absolute;
+    bottom: -3px;
+    right: 10%;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+}

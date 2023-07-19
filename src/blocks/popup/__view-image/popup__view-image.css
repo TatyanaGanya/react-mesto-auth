@@ -1,0 +1,5 @@
+.popup__view-image {
+    position: relative;
+    margin: 90px 40px;
+    box-sizing: content-box;
+}

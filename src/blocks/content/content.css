@@ -1,0 +1,10 @@
+.content {
+    background-color: #000;
+    margin: 0 auto 0;
+    padding: 0;
+    min-width: 320px;
+    max-width: 880px;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-style: normal;
+    min-height: 100vh;
+}

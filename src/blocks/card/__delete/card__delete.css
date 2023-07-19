@@ -1,0 +1,18 @@
+.card__delete {
+    border: none;
+    background: none;
+    background-image: url(../../../images/Groupdelate.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 18px;
+    height: 19px;
+    top:20px;
+    right: 20px;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.card__delete:hover {
+    opacity: .8;
+}

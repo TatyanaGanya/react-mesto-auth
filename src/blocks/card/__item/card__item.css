@@ -1,0 +1,12 @@
+.card__item {
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    background: #fff;
+    min-height: 361px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+}

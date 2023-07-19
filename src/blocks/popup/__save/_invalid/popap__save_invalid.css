@@ -1,0 +1,12 @@
+.popup__save_invalid {
+    border: 1px solid #000;
+    color: #000;
+    background: #e5e5e5;
+    opacity: .2;
+}
+
+.popup__save_invalid:hover {
+    background: #e5e5e5;
+    opacity: .2;
+    cursor: not-allowed;
+}
