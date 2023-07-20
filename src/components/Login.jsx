@@ -18,9 +18,10 @@ function Login({ name, handleLogin }) {
           type="email"
           className="register__input"
           placeholder="email@mail.com"
-          value={values.email}
+          value={values.email|| ''}
           onChange={handleChange}
           autoComplete="off"
+          required
         ></input>
 
         <input
@@ -29,9 +30,10 @@ function Login({ name, handleLogin }) {
           className="register__input"
           placeholder="••••••••••"
           minLength={3}
-          value={values.password}
+          value={values.password|| ''}
           onChange={handleChange}
           autoComplete="off"
+          required
         ></input>
 
         <button className="register__button" type="submit">

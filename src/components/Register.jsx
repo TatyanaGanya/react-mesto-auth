@@ -23,9 +23,10 @@ function Register({ name, handleRegister }) {
           type="email"
           className="register__input"
           placeholder="Email"
-          value={values.email}
+          value={values.email|| ''}
           onChange={handleChange}
           autoComplete="off"
+          required
         ></input>
 
         <input
@@ -34,9 +35,11 @@ function Register({ name, handleRegister }) {
           name="password"
           type="password"
           minLength={3}
-          value={values.password}
+          value={values.password|| ''}
           onChange={handleChange}
           autoComplete="off"
+          required
+
         ></input>
 
         <button className="register__button" type="submit">
