@@ -12,11 +12,11 @@
     transition: .6s;
 }
 
-@media screen and (max-width: 920px) {
+/* @media screen and (max-width: 920px) {
     .profile__avatar {
         margin-left: 27px;
     }
-}
+} */
 
 @media screen and (max-width: 440px) {
     .profile__avatar {

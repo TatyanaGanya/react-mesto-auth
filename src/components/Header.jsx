@@ -1,25 +1,65 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "./../images/logo.svg";
 
 function Header({ name, dataUser }) {
+  const [activeState, setActiveState] = useState(false);
+
+  function openHeader(e) {
+    e.preventDefault();
+    setActiveState((prev) => !prev);
+  }
+
+  function onSignOut() {
+    localStorage.removeItem("jwt");
+  }
+
   return (
-    <header className="header">
+    <header className={`header ${activeState ? "header_burger-menu" : ""}`}>
       <img src={logo} alt="Место" className="header__logo" />
 
       {name === "signup" || name === "signin" ? (
         <Link
-          to={name === "signin" ? "/sign-up" : "/sign-in"}
+          to={name === "signup" ? "/sign-in" : "/sign-up"}
           className="header__link"
         >
-          {name === "signin" ? "Регистрация" : "Войти"}
+
+          {name !== "signup" ? "Регистрация" : "Войти"}
         </Link>
+      ) : (
 
         
-      ) : (
-        <div className="header__email-conteiner">
-          <p className="header__email">{dataUser}</p>
-          <button className="header__button">Выйти</button>
-        </div>
+        <>
+          <div className={`lalala ${activeState ? "active" : " "}`}>
+            <p className="header__email">{dataUser}</p>
+            <Link
+              to={"/sing-in"}
+              className="header__button"
+              onClick={onSignOut}
+            >
+              Выйти
+            </Link>
+          </div>
+
+          <div className="header__conteiner">
+            <p className="header__email">{dataUser}</p>
+            <Link
+              to={"/sing-in"}
+              className="header__button"
+              onClick={onSignOut}
+            >
+              Выйти
+            </Link>
+          </div>
+
+          <label onClick={openHeader} for="toggle-1" class="toggle-menu">
+            <i
+              className={`burger-icon ${
+                activeState ? "burger-icon_active" : "burger-icon"
+              }`}
+            ></i>
+          </label>
+        </>
       )}
     </header>
   );

@@ -1,37 +1,33 @@
+
 import useFormValidation from "../utils/useFormValidation.js";
 
-
 function Login({ name, handleLogin }) {
-  const { values, error, isValid, isInputValid, handleChange } =
+  const { values, isValid, error, isInputValid, handleChange } =
     useFormValidation();
 
-    function onLogin(e) {
-      e.preventDefaul();
-      handleLogin(values.password, values.email);
+    function onSubmitLogin(e) {
+      e.preventDefault();
+      // Передаём значения управляемых компонентов во внешний обработчик
+      handleLogin({ email: values.email, password: values.password });
     }
 
-
   return (
-    <section
-      className="register-form"
-      name={name}
-
-    >
+    <section className="register-form" name={name}>
       <h2 className="register__title">Вход</h2>
-      <form 
-      className="register__form"
-      onSubmit={onLogin}
-      isValid={isValid}
+      <form
+        className="register__form"
+        onSubmit={onSubmitLogin}
+        isValid={isValid}
       >
         <input
+          name="email"
+          type="email"
           className="register__input"
           placeholder="email@mail.com"
           value={values.email}
           onChange={handleChange}
-         isInputValid={isInputValid.email}
+          isInputValid={isInputValid.email}
           error={error.email}
-          name="email"
-          type="email"
         ></input>
 
         <input
@@ -42,11 +38,12 @@ function Login({ name, handleLogin }) {
           minLength={3}
           value={values.password}
           onChange={handleChange}
-         isInputValid={isInputValid.password}
+          isInputValid={isInputValid.password}
         ></input>
 
-        <button className="register__button" type="submit">Войти</button>
-
+        <button className="register__button" type="submit">
+          Войти
+        </button>
       </form>
     </section>
   );

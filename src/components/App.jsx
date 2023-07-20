@@ -37,7 +37,7 @@ function App() {
 
   const [isCheckToken, setIsCheckToken] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false); // зарегистрирован пользователь?
-  const [userData, setUserData] = useState({}); //  данные юзера
+ // const [userData, setUserData] = useState({}); //  данные юзера
   const [isResultPopupOpen, setIsResultPopupOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -52,6 +52,7 @@ function App() {
     //12ПЗ
     setIsResultPopupOpen(false);
   }, []);
+
 
   // esc 
   const handleCloseEsc = useCallback(
@@ -99,47 +100,59 @@ function App() {
     setEvenListnersForDocument();
   }
 
-  const auth = (jwt) => {
-    return auth.getUserData(jwt).then((res) => {
-      if (res) {
-        const { email, password } = res;
-        setLoggedIn(true); // обновление
-        setUserData({
-          email,
-          password,
-        });
+  // const auth = (jwt) => {
+  //    getUserData(jwt).then((res) => {
+  //     if (res) {
+  //       const { email, password } = res;
+  //       setLoggedIn(true); // обновление
+  //       setUserData({
+  //         email,
+  //         password,
+  //       });
+  //     }
+  //   });
+  // };
+
+
+  // //регитсрация пользователя
+  // useEffect(() => {
+  //   const jwt = localStorage.getItem("jwt");
+  //   if (jwt) {
+  //     auth(jwt);
+  //   }
+  // //   //     getUserData(localStorage.jwt)
+  // //   //       .then(res => {
+  // //   //         setUserEmail(res.data.email);
+  // //   //         setLoggedIn(true);
+  // //   //         setIsCheckToken(false);
+  // //   //         navigate("/");
+  // //   //       })
+  // //   //       .catch((err) => {
+  // //   //         console.error(err);
+  // //   //       });
+  // //   //   } else {
+  // //   //     setLoggedIn(false);
+  // //   //     setIsCheckToken(false);
+  // //   //   }
+  // }, [navigate]);
+
+  useEffect(() => {
+    if (localStorage.jwt) {
+        getUserData(localStorage.jwt)
+          .then(res => {
+            setUserEmail(res.data.email);
+            setLoggedIn(true);
+            // setIsCheckToken(false);
+            navigate("/");
+          })
+          .catch((err) => { console.error(err) });
+      } else {
+        setLoggedIn(false);
+       // setIsCheckToken(false);
       }
-    });
-  };
-
-  useEffect(() => {
-    if (loggedIn) {
-      navigate.push("/signin");
-    }
-  }, [loggedIn, navigate]);
-
-  //регитсрация пользователя
-  useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      auth(jwt);
-    }
-
-    //     getUserData(localStorage.jwt)
-    //       .then(res => {
-    //         setUserEmail(res.data.email);
-    //         setLoggedIn(true);
-    //         setIsCheckToken(false);
-    //         navigate("/");
-    //       })
-    //       .catch((err) => {
-    //         console.error(err);
-    //       });
-    //   } else {
-    //     setLoggedIn(false);
-    //     setIsCheckToken(false);
-    //   }
   }, [navigate]);
+
+
 
   useEffect(() => {
     if (loggedIn) {
@@ -238,9 +251,13 @@ function App() {
       });
   }
 
+useEffect(()=>{
+  if(loggedIn){ }
 
+},[loggedIn])
 
-  function handleLogin(email, password) {
+  function handleLogin(values) {
+    const {password, email} = values
     authorization(password, email)
       .then((res) => {
         localStorage.setItem("jwt", res.token);
@@ -248,24 +265,26 @@ function App() {
         navigate("/");
       })
       .catch((err) => {
-        setIsResultPopupOpen(false);
+        setIsResultPopupOpen(true);
         setIsSuccessful(false);
         console.error(err);
       });
   }
 
-  function handleRegister(password, email) {
+function handleRegister(values) {
+  const {password, email} = values
     registation(password, email)
       .then((res) => {
-        console.log("dddd");
-        setLoggedIn(true);
-        navigate("/signin");
+        setIsResultPopupOpen(true);
+        setIsSuccessful(true);
+        navigate("/sign-in")
       })
       .catch((err) => {
         setIsResultPopupOpen(true);
         setIsSuccessful(false);
         console.error(err);
-      });
+      })
+     
   }
 
   return (
@@ -287,6 +306,8 @@ function App() {
               userEmail={userEmail}
               loggedIn={loggedIn}
               isCheckToken={isCheckToken}
+              dataUser={userEmail}
+
             />
           }
         />

@@ -1,7 +1,7 @@
 import useFormValidation from "../utils/useFormValidation.js";
 import { Link } from "react-router-dom";
 
-function Register({ name, handleRegister, onSubmit }) {
+function Register({ name, handleRegister }) {
   const { values, isValid, error, isInputValid, handleChange } =
     useFormValidation();
 
@@ -10,11 +10,6 @@ function Register({ name, handleRegister, onSubmit }) {
     // Передаём значения управляемых компонентов во внешний обработчик
     handleRegister({ email: values.email, password: values.password });
   }
-
-  // function onRegister(e) {
-  //   e.preventDefaul();
-  //   (values.password, values.email);
-  // }
 
   return (
     <section className="register-form" name={name}>
@@ -52,7 +47,7 @@ function Register({ name, handleRegister, onSubmit }) {
           Зарегистрироваться
         </button>
         <p className="register__href">
-          Уже зарегистрированы? <Link to={"/sign-in"}> Войти </Link>{" "}
+          Уже зарегистрированы? <Link to={"/sign-in"} className="register__entrance"> Войти </Link>
         </p>
       </form>
     </section>
