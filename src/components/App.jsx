@@ -35,7 +35,6 @@ function App() {
   const [isSuccessful, setIsSuccessful] = useState(false); //
   const [loggedIn, setLoggedIn] = useState(false); // зарегистрирован user
   const [isResultPopupOpen, setIsResultPopupOpen] = useState(false);
-
   const navigate = useNavigate();
 
   const setIsEditCloseAllPopups = useCallback(() => {
@@ -68,7 +67,7 @@ function App() {
   function setEvenListnersForDocument() {
     document.addEventListener("keydown", handleCloseEsc);
   }
-  ///////////////////////////////////////
+
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
     setEvenListnersForDocument();
@@ -101,7 +100,6 @@ function App() {
         .then((res) => {
           setUserEmail(res.data.email);
           setLoggedIn(true);
-
           navigate("/");
         })
         .catch((err) => {
