@@ -27,16 +27,13 @@ function Header({ name, dataUser }) {
         </Link>
       ) : (
         <>
-                  <label onClick={openHeader} className="toggle-menu">
+          <label onClick={openHeader} className="toggle-menu">
             <i
               className={`header__burger-icon ${
-                activeState
-                  ? "header__burger-icon_active"
-                  : ""
+                activeState ? "header__burger-icon_active" : ""
               }`}
             ></i>
           </label>
-          
           <div
             className={`header__conteiner ${
               activeState ? "header__conteiner_burger-menu" : " "
@@ -51,8 +48,6 @@ function Header({ name, dataUser }) {
               Выйти
             </Link>
           </div>
-
-
         </>
       )}
     </header>
