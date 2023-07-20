@@ -23,25 +23,15 @@ function Header({ name, dataUser }) {
           to={name === "signup" ? "/sign-in" : "/sign-up"}
           className="header__link"
         >
-
           {name !== "signup" ? "Регистрация" : "Войти"}
         </Link>
       ) : (
-
-        
         <>
-          <div className={`lalala ${activeState ? "active" : " "}`}>
-            <p className="header__email">{dataUser}</p>
-            <Link
-              to={"/sing-in"}
-              className="header__button"
-              onClick={onSignOut}
-            >
-              Выйти
-            </Link>
-          </div>
-
-          <div className="header__conteiner">
+          <div
+            className={`header__conteiner ${
+              activeState ? "header__conteiner_burger-menu" : " "
+            }`}
+          >
             <p className="header__email">{dataUser}</p>
             <Link
               to={"/sing-in"}
