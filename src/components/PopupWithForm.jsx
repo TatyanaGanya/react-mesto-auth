@@ -6,10 +6,8 @@ function PopupWithForm({
   onClose,
   children,
   onSubmit,
-  isValid=true
-}) 
-
-{
+  isValid = true,
+}) {
   return (
     <div
       className={`popup popup_${name} ${isOpen && "popup_open"}`}

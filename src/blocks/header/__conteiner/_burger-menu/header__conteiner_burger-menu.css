@@ -1,0 +1,15 @@
+@media screen and (max-width: 600px) {
+  .header__conteiner_burger-menu {
+    position: fixed;
+    top: 0;
+    left: 5px;
+    width: 100%;
+    min-height: 70px;
+    margin-top: 100px;
+    top: 22px;
+    left: 10px;
+    text-align: center;
+    margin: 0;
+    display: block;
+  }
+}

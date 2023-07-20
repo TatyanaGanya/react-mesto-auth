@@ -1,0 +1,14 @@
+.register__href {
+    margin: 16px 0 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ffffff;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .register__href {
+      margin: 21px 0 0;
+    }
+  }

@@ -27,6 +27,16 @@ function Header({ name, dataUser }) {
         </Link>
       ) : (
         <>
+                  <label onClick={openHeader} className="toggle-menu">
+            <i
+              className={`header__burger-icon ${
+                activeState
+                  ? "header__burger-icon_active"
+                  : ""
+              }`}
+            ></i>
+          </label>
+          
           <div
             className={`header__conteiner ${
               activeState ? "header__conteiner_burger-menu" : " "
@@ -42,13 +52,7 @@ function Header({ name, dataUser }) {
             </Link>
           </div>
 
-          <label onClick={openHeader} for="toggle-1" class="toggle-menu">
-            <i
-              className={`burger-icon ${
-                activeState ? "burger-icon_active" : "burger-icon"
-              }`}
-            ></i>
-          </label>
+
         </>
       )}
     </header>

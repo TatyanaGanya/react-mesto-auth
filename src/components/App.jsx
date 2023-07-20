@@ -4,8 +4,8 @@ import Main from "./Main.jsx";
 import Footer from "./Footer.jsx";
 import PopupWithForm from "./PopupWithForm.jsx";
 import ImagePopup from "./ImagePopup.jsx";
-import { useCallback, useEffect, useState,  } from "react";
-import { Route, Routes, useNavigate, Navigate} from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 import CurrentUserContext from "../contexs/CurrentUserContext.js";
 import api from "../utils/api.js";
 import EditProfilePopup from "./EditProfilePopup.jsx";
@@ -17,7 +17,6 @@ import { registation, authorization, getUserData } from "../utils/auth.js";
 import InfoTooltip from "./InfoTooltip.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import ProtectedPage from "./ProtectedPage";
-
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -34,10 +33,7 @@ function App() {
   const [userEmail, setUserEmail] = useState(""); // почта
   //regist
   const [isSuccessful, setIsSuccessful] = useState(false); //
-
-  const [isCheckToken, setIsCheckToken] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false); // зарегистрирован пользователь?
- // const [userData, setUserData] = useState({}); //  данные юзера
+  const [loggedIn, setLoggedIn] = useState(false); // зарегистрирован user
   const [isResultPopupOpen, setIsResultPopupOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -53,8 +49,7 @@ function App() {
     setIsResultPopupOpen(false);
   }, []);
 
-
-  // esc 
+  // esc
   const handleCloseEsc = useCallback(
     (evt) => {
       if (evt.key === "Escape") {
@@ -100,59 +95,22 @@ function App() {
     setEvenListnersForDocument();
   }
 
-  // const auth = (jwt) => {
-  //    getUserData(jwt).then((res) => {
-  //     if (res) {
-  //       const { email, password } = res;
-  //       setLoggedIn(true); // обновление
-  //       setUserData({
-  //         email,
-  //         password,
-  //       });
-  //     }
-  //   });
-  // };
-
-
-  // //регитсрация пользователя
-  // useEffect(() => {
-  //   const jwt = localStorage.getItem("jwt");
-  //   if (jwt) {
-  //     auth(jwt);
-  //   }
-  // //   //     getUserData(localStorage.jwt)
-  // //   //       .then(res => {
-  // //   //         setUserEmail(res.data.email);
-  // //   //         setLoggedIn(true);
-  // //   //         setIsCheckToken(false);
-  // //   //         navigate("/");
-  // //   //       })
-  // //   //       .catch((err) => {
-  // //   //         console.error(err);
-  // //   //       });
-  // //   //   } else {
-  // //   //     setLoggedIn(false);
-  // //   //     setIsCheckToken(false);
-  // //   //   }
-  // }, [navigate]);
-
   useEffect(() => {
     if (localStorage.jwt) {
-        getUserData(localStorage.jwt)
-          .then(res => {
-            setUserEmail(res.data.email);
-            setLoggedIn(true);
-            // setIsCheckToken(false);
-            navigate("/");
-          })
-          .catch((err) => { console.error(err) });
-      } else {
-        setLoggedIn(false);
-       // setIsCheckToken(false);
-      }
+      getUserData(localStorage.jwt)
+        .then((res) => {
+          setUserEmail(res.data.email);
+          setLoggedIn(true);
+
+          navigate("/");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else {
+      setLoggedIn(false);
+    }
   }, [navigate]);
-
-
 
   useEffect(() => {
     if (loggedIn) {
@@ -167,7 +125,6 @@ function App() {
         });
     }
   }, [loggedIn]);
-
 
   function handleCardDelete(evt) {
     evt.preventDefault();
@@ -251,13 +208,13 @@ function App() {
       });
   }
 
-useEffect(()=>{
-  if(loggedIn){ }
-
-},[loggedIn])
+  useEffect(() => {
+    if (loggedIn) {
+    }
+  }, [loggedIn]);
 
   function handleLogin(values) {
-    const {password, email} = values
+    const { password, email } = values;
     authorization(password, email)
       .then((res) => {
         localStorage.setItem("jwt", res.token);
@@ -271,20 +228,19 @@ useEffect(()=>{
       });
   }
 
-function handleRegister(values) {
-  const {password, email} = values
+  function handleRegister(values) {
+    const { password, email } = values;
     registation(password, email)
       .then((res) => {
         setIsResultPopupOpen(true);
         setIsSuccessful(true);
-        navigate("/sign-in")
+        navigate("/sign-in");
       })
       .catch((err) => {
         setIsResultPopupOpen(true);
         setIsSuccessful(false);
         console.error(err);
-      })
-     
+      });
   }
 
   return (
@@ -305,9 +261,7 @@ function handleRegister(values) {
               onCardLike={handleCardLike}
               userEmail={userEmail}
               loggedIn={loggedIn}
-              isCheckToken={isCheckToken}
               dataUser={userEmail}
-
             />
           }
         />
@@ -317,11 +271,7 @@ function handleRegister(values) {
           element={
             <>
               <Header name="signup" />
-              <Main
-                name="signup"
-                isCheckToken={isCheckToken}
-                handleRegister={handleRegister}
-              />
+              <Main name="signup" handleRegister={handleRegister} />
             </>
           }
         />
@@ -330,11 +280,7 @@ function handleRegister(values) {
           element={
             <>
               <Header name="signin" />
-              <Main
-                name="signin"
-                isCheckToken={isCheckToken}
-                handleLogin={handleLogin}
-              />
+              <Main name="signin" handleLogin={handleLogin} />
             </>
           }
         />

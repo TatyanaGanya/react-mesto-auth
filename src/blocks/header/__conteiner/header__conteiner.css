@@ -1,0 +1,12 @@
+.header__conteiner {
+    display: flex;
+    align-items: baseline;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .header__conteiner {
+      display: none;
+    }
+  }

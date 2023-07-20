@@ -1,0 +1,8 @@
+.header__burger-icon_active {
+    background-image: url(../../../../images/IconClose_icon_x.png);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    top: 180px;
+    right: 0;
+  }
