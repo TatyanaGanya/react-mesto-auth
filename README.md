@@ -3,4 +3,5 @@
  - Pегистрация и проверка токена  
 -  Подключена функциональность сайта
 -  Реализована аутентификация пользователя
-https://tatyanaganya.github.io/sign-in
+
+https://tatyanaganya.github.io/react-mesto-auth/
